@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.progtech.progtech2024'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.progtech.progtech2024"
