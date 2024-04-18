@@ -9,6 +9,9 @@ public interface AccountDao {
     @Insert
     void register(Account account);
 
+    @Query("SELECT EXISTS(SELECT 1 FROM accounts WHERE username = :username)")
+    boolean isUsernameAvailable(String username);
+
     @Query("SELECT * FROM accounts WHERE username = :username AND password = :password")
     Account login(String username, String password);
 }
