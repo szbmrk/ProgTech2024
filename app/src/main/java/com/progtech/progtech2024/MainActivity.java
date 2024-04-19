@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         Account account = new Account("test user", "password", 500, true);
         // example reg
-        if (accountDao.isUsernameAvailable(account.getUsername())) {
+        if (accountDao.isUsernameAvailable(account.username)) {
             accountDao.register(account);
         } else {
         }

@@ -8,49 +8,23 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "accounts")
 public class Account {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int id;
     @NonNull
-    private String username;
+    public String username;
     @NonNull
-    private String password;
+    public String password;
     @NonNull
-    private int balance;
+    public int balance;
     @NonNull
-    private boolean isJunior;
+    public boolean isJunior;
     @ColumnInfo(defaultValue = "CURRENT_TIMESTAMP")
-    private String createdAt;
+    public String createdAt;
 
     public Account(@NonNull String username, @NonNull String password, int balance, boolean isJunior) {
         this.username = username;
         this.password = password;
         this.balance = balance;
         this.isJunior = isJunior;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    @NonNull
-    public String getUsername() {
-        return username;
-    }
-
-    @NonNull
-    public String getPassword() {
-        return password;
-    }
-
-    public int getBalance() {
-        return balance;
-    }
-
-    public boolean isJunior() {
-        return isJunior;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
     }
 }
 
