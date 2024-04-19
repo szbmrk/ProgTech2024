@@ -16,5 +16,11 @@ public class MainActivity extends AppCompatActivity {
         BankDatabase db = Room.databaseBuilder(this, BankDatabase.class, "bank").allowMainThreadQueries().build();
 
         AccountDao accountDao = db.accountDao();
+
+        // example reg
+        if (accountDao.isUsernameAvailable(account.getUsername())) {
+        accountDao.register(account);
+        } else {
+        }
     }
 }
