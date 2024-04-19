@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
+
+import com.progtech.progtech2024.database.Account;
+import com.progtech.progtech2024.database.AccountDao;
+import com.progtech.progtech2024.database.BankDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,9 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
         AccountDao accountDao = db.accountDao();
 
+        Account account = new Account("test user", "password", 500, true);
         // example reg
         if (accountDao.isUsernameAvailable(account.getUsername())) {
-        accountDao.register(account);
+            accountDao.register(account);
         } else {
         }
     }

@@ -1,4 +1,4 @@
-package com.progtech.progtech2024;
+package com.progtech.progtech2024.database;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

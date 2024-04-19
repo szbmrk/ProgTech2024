@@ -1,13 +1,10 @@
-package com.progtech.progtech2024;
+package com.progtech.progtech2024.database;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
-import java.time.LocalDateTime;
-import java.util.Date;
 
 
 @Entity(tableName = "transactions", foreignKeys = { @ForeignKey(entity = Account.class,
