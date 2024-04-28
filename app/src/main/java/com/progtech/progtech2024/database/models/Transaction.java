@@ -34,7 +34,7 @@ public class Transaction {
     @ColumnInfo(defaultValue = "CURRENT_TIMESTAMP")
     public String createdAt;
 
-    public Transaction(String message, int fromAccountId, int toAccountId, @NonNull String transactionType, int amount) {
+    public Transaction(String message, @NonNull int fromAccountId, int toAccountId, @NonNull String transactionType, @NonNull int amount) {
         this.message = message;
         this.fromAccountId = fromAccountId;
         this.toAccountId = toAccountId;
@@ -43,7 +43,7 @@ public class Transaction {
     }
 
     @Ignore
-    public Transaction(int fromAccountId, @NonNull String transactionType, int amount) {
-        this("", fromAccountId, fromAccountId, transactionType, amount);
+    public Transaction(@NonNull int fromAccountId, @NonNull String transactionType, @NonNull int amount) {
+        this(null, fromAccountId, fromAccountId, transactionType, amount);
     }
 }
