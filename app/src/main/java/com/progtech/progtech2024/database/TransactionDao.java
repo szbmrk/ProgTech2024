@@ -6,5 +6,5 @@ import androidx.room.Insert;
 @Dao
 public interface TransactionDao {
     @Insert
-    void insert(Transaction transaction);
+    long insert(Transaction transaction);
 }

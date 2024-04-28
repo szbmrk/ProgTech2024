@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //example login
-        AccountManager accountManager = AccountManager.getInstance();
+        AccountManager accountManager = AccountManager.getInstance(this);
         accountManager.setLoggedInAccount(accountDao.login(account.username, account.password));
     }
 }

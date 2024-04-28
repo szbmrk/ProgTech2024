@@ -17,8 +17,7 @@ import androidx.room.PrimaryKey;
 public class Transaction {
     @PrimaryKey(autoGenerate = true)
     public int id;
-
-    public String kozlemeny;
+    public String message;
 
     @NonNull
     public int fromAccountId;
@@ -33,4 +32,16 @@ public class Transaction {
 
     @ColumnInfo(defaultValue = "CURRENT_TIMESTAMP")
     public String createdAt;
+
+    public Transaction(String message, int fromAccountId, int toAccountId, @NonNull String transactionType, int amount) {
+        this.message = message;
+        this.fromAccountId = fromAccountId;
+        this.toAccountId = toAccountId;
+        this.transactionType = transactionType;
+        this.amount = amount;
+    }
+
+    public Transaction(int fromAccountId, @NonNull String transactionType, int amount) {
+        this("", fromAccountId, fromAccountId, transactionType, amount);
+    }
 }
