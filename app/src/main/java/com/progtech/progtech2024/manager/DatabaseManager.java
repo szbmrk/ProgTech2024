@@ -26,6 +26,11 @@ public class DatabaseManager {
         return true;
     }
 
+    public boolean ModifyBalance(String userId, int newBalance) throws ExecutionException, InterruptedException {
+        int updatedRows = accountRepository().modifyBalance(userId, newBalance);
+        return updatedRows == 1;
+    }
+
     private static DatabaseManager instance;
     private static volatile BankDatabase db;
 

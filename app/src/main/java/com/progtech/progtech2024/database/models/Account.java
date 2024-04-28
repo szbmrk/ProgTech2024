@@ -10,12 +10,14 @@ import androidx.room.PrimaryKey;
 
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
+import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
 
 @Entity(tableName = "accounts")
 public class Account {
     @PrimaryKey()
+    @NonNull
     public String id;
     @NonNull
     public String username;
@@ -38,14 +40,13 @@ public class Account {
 
     @Ignore
     public boolean ModifyBalance(Context context, int newBalance) throws ExecutionException, InterruptedException {
-        AccountRepository repository = BankDatabase.getInstance(context).accountRepository();
-        int updatedRows = repository.modifyBalance(id, newBalance);
-
-        if (updatedRows == 1) {
+        DatabaseManager dbManager = DatabaseManager.getInstance(context);
+        if (dbManager.ModifyBalance(id, newBalance)) {
             balance = newBalance;
+            return true;
         }
 
-        return updatedRows == 1;
+        return false;
     }
 
     @Override
