@@ -7,6 +7,7 @@ import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.models.Transaction;
 import com.progtech.progtech2024.database.repositories.TransactionRepository;
+import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
 
@@ -49,15 +50,11 @@ public class WithdrawCommand implements IBankCommand {
 
     @Override
     public boolean PostTransaction() throws ExecutionException, InterruptedException {
-        TransactionRepository repository = BankDatabase.getInstance(context).transactionRepository();
         TransactionBuilder tb = new TransactionBuilder();
-
         Transaction transaction = tb.setFromAccountId(account.id).setAmount(amount).setTransactionType("WITHDRAW").build();
 
-        long newTransactionId = repository.insert(transaction);
-        if (newTransactionId < 1)
-            return false;
+        DatabaseManager dbManager = DatabaseManager.getInstance(context);
 
-        return true;
+        return dbManager.PostTransaction(transaction);
     }
 }
