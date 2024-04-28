@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BankDatabase db = Room.databaseBuilder(this, BankDatabase.class, "bank").allowMainThreadQueries().build();
+        BankDatabase db = BankDatabase.getInstance(this);
 
         AccountDao accountDao = db.accountDao();
 
