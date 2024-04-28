@@ -44,7 +44,6 @@ public class WithdrawCommand implements IBankCommand {
 
     @Override
     public boolean PostTransaction() {
-
         Transaction transaction = new Transaction(account.id, "WITHDRAW", amount);
         TransactionDao transactionDao = BankDatabase.getInstance(context).transactionDao();
 
