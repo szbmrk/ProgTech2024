@@ -38,7 +38,11 @@ public class Account {
     @Ignore
     public boolean ModifyBalance(Context context, int newBalance) throws ExecutionException, InterruptedException {
         AccountRepository repository = BankDatabase.getInstance(context).accountRepository();
-        int updatedRows = repository.modifyBalance(id, newBalance).get();
+        int updatedRows = repository.modifyBalance(id, newBalance);
+
+        if (updatedRows == 1) {
+            balance = newBalance;
+        }
 
         return updatedRows == 1;
     }

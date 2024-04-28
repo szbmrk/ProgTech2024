@@ -22,29 +22,28 @@ public class MainActivity extends AppCompatActivity {
 
         BankDatabase db = BankDatabase.getInstance(this);
 
-        Account account = new Account("test user", "password", 500, true);
+        Account account = new Account("aaaaaaaa", "password", 500, true);
         AccountRepository repository = db.accountRepository();
 
         //EXAMPLE REG LOGIN WITHDRAW
-
         try {
-            long newUserId = repository.register(account).get();
+            long newUserId = repository.register(account);
 
-            if (newUserId < 1) {
+            if (newUserId > 0) {
                 Log.d("reg", "success");
             }
             else {
                 Log.d("reg", "no success");
             }
 
-            Account loggedIn = repository.login(account.username, account.password).get();
+            Account loggedIn = repository.login(account.username, account.password);
             AccountManager.getInstance(this).setLoggedInAccount(loggedIn);
-
 
             WithdrawCommand command = new WithdrawCommand(this, 200, loggedIn);
             command.Call();
 
-            Log.d("withdrawed", loggedIn.toString());
+
+            Log.d("withdrawed", AccountManager.getInstance(this).getLoggedInAccount().toString());
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {

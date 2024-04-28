@@ -51,7 +51,7 @@ public class WithdrawCommand implements IBankCommand {
         Transaction transaction = new Transaction(account.id, "WITHDRAW", amount);
         TransactionRepository repository = BankDatabase.getInstance(context).transactionRepository();
 
-        long newTransactionId = repository.insert(transaction).get();
+        long newTransactionId = repository.insert(transaction);
         if (newTransactionId < 1)
             return false;
 
