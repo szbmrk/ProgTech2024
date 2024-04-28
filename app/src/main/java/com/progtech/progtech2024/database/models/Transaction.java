@@ -1,4 +1,4 @@
-package com.progtech.progtech2024.database;
+package com.progtech.progtech2024.database.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

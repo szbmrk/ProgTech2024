@@ -1,6 +1,7 @@
-package com.progtech.progtech2024.database;
+package com.progtech.progtech2024.database.repositories;
 
-import android.database.Cursor;
+import com.progtech.progtech2024.database.models.Account;
+import com.progtech.progtech2024.database.daos.AccountDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

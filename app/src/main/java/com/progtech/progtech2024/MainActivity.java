@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.progtech.progtech2024.commands.WithdrawCommand;
-import com.progtech.progtech2024.database.Account;
-import com.progtech.progtech2024.database.AccountDao;
-import com.progtech.progtech2024.database.AccountRepository;
+import com.progtech.progtech2024.database.models.Account;
+import com.progtech.progtech2024.database.repositories.AccountRepository;
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.manager.AccountManager;
 

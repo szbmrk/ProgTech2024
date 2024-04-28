@@ -1,4 +1,4 @@
-package com.progtech.progtech2024.database;
+package com.progtech.progtech2024.database.models;
 
 import android.content.Context;
 
@@ -7,6 +7,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.progtech.progtech2024.database.BankDatabase;
+import com.progtech.progtech2024.database.repositories.AccountRepository;
 
 import java.util.concurrent.ExecutionException;
 

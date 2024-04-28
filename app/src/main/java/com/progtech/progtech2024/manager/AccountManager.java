@@ -1,11 +1,8 @@
 package com.progtech.progtech2024.manager;
 
-import android.app.Application;
 import android.content.Context;
 
-import com.progtech.progtech2024.database.Account;
-import com.progtech.progtech2024.database.AccountDao;
-import com.progtech.progtech2024.database.BankDatabase;
+import com.progtech.progtech2024.database.models.Account;
 
 public class AccountManager {
 

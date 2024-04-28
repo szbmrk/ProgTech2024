@@ -1,9 +1,11 @@
-package com.progtech.progtech2024.database;
+package com.progtech.progtech2024.database.daos;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import com.progtech.progtech2024.database.models.Transaction;
 
 import java.util.List;
 

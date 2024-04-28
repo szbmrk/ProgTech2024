@@ -2,11 +2,10 @@ package com.progtech.progtech2024.commands;
 
 import android.content.Context;
 
-import com.progtech.progtech2024.database.Account;
+import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.BankDatabase;
-import com.progtech.progtech2024.database.Transaction;
-import com.progtech.progtech2024.database.TransactionDao;
-import com.progtech.progtech2024.database.TransactionRepository;
+import com.progtech.progtech2024.database.models.Transaction;
+import com.progtech.progtech2024.database.repositories.TransactionRepository;
 
 import java.util.concurrent.ExecutionException;
 

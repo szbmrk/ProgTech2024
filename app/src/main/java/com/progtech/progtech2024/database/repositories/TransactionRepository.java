@@ -1,4 +1,7 @@
-package com.progtech.progtech2024.database;
+package com.progtech.progtech2024.database.repositories;
+
+import com.progtech.progtech2024.database.models.Transaction;
+import com.progtech.progtech2024.database.daos.TransactionDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
