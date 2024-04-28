@@ -32,7 +32,7 @@ public class AccountRepository {
         return account.get();
     }
 
-    public int modifyBalance(String userId, int newBalance) throws ExecutionException, InterruptedException {
+    public int modifyBalance(int userId, int newBalance) throws ExecutionException, InterruptedException {
         Future<Integer> updatedRows = executorService.submit(() -> accountDao.modifyBalance(userId, newBalance));
         return updatedRows.get();
     }

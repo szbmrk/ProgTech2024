@@ -19,5 +19,5 @@ public interface AccountDao {
     Account login(String username, String password);
 
     @Query("UPDATE accounts SET balance = :newBalance WHERE id = :userId")
-    int modifyBalance(String userId, int newBalance);
+    int modifyBalance(long userId, int newBalance);
 }

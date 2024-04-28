@@ -7,15 +7,15 @@ import com.progtech.progtech2024.database.models.Transaction;
 public class TransactionBuilder {
 
     private String message;
-    private String fromAccountId;
-    private String toAccountId;
+    private int fromAccountId;
+    private int toAccountId;
     private String transactionType;
     private int amount;
 
     public TransactionBuilder() {
     }
 
-    public TransactionBuilder setFromAccountId(String id) {
+    public TransactionBuilder setFromAccountId(int id) {
         this.fromAccountId = id;
         return this;
     }
@@ -25,7 +25,7 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder setToAccountId(String toAccountId) {
+    public TransactionBuilder setToAccountId(int toAccountId) {
         this.toAccountId = toAccountId;
         return this;
     }

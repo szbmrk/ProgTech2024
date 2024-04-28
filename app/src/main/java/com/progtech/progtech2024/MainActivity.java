@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.progtech.progtech2024.commands.DepositCommand;
 import com.progtech.progtech2024.commands.WithdrawCommand;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseManager db = DatabaseManager.getInstance(this);
 
-        Account account = new Account("aaaaaaaa", "bbb", "aaaa", 500, true);
+        Account account = new Account("1234511-123312", "yyyy", "aaaa", 500, true);
         AccountRepository repository = db.accountRepository();
 
         //EXAMPLE REG LOGIN WITHDRAW
@@ -42,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
             WithdrawCommand command = new WithdrawCommand(this, 200, loggedIn);
             command.Call();
+            command.Undo();
 
+            DepositCommand depositCommand = new DepositCommand(this, 500, loggedIn);
+            depositCommand.Call();
+
+            command.Call();
 
             Log.d("withdrawed", AccountManager.getInstance(this).getLoggedInAccount().toString());
         } catch (ExecutionException e) {
