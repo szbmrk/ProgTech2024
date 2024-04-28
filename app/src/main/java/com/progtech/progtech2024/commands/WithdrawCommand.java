@@ -6,6 +6,9 @@ import com.progtech.progtech2024.database.Account;
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.Transaction;
 import com.progtech.progtech2024.database.TransactionDao;
+import com.progtech.progtech2024.database.TransactionRepository;
+
+import java.util.concurrent.ExecutionException;
 
 public class WithdrawCommand implements IBankCommand {
     private int amount;
@@ -20,16 +23,18 @@ public class WithdrawCommand implements IBankCommand {
     }
 
     @Override
-    public void Call() {
+    public void Call() throws ExecutionException, InterruptedException {
         if (account.balance < amount) {
             succeeded = false;
             return;
         }
-        succeeded = PostTransaction();
 
+        succeeded = PostTransaction();
         if (!succeeded) return;
 
-        account.balance += amount;
+        int newBalance = account.balance - amount;
+        succeeded = account.ModifyBalance(context, newBalance);
+        if (!succeeded) return;
 
         succeeded = true;
     }
@@ -43,11 +48,11 @@ public class WithdrawCommand implements IBankCommand {
     }
 
     @Override
-    public boolean PostTransaction() {
+    public boolean PostTransaction() throws ExecutionException, InterruptedException {
         Transaction transaction = new Transaction(account.id, "WITHDRAW", amount);
-        TransactionDao transactionDao = BankDatabase.getInstance(context).transactionDao();
+        TransactionRepository repository = BankDatabase.getInstance(context).transactionRepository();
 
-        long newTransactionId = transactionDao.insert(transaction);
+        long newTransactionId = repository.insert(transaction).get();
         if (newTransactionId < 1)
             return false;
 

@@ -1,9 +1,14 @@
 package com.progtech.progtech2024.database;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.concurrent.ExecutionException;
 
 @Entity(tableName = "accounts")
 public class Account {
@@ -25,6 +30,26 @@ public class Account {
         this.password = password;
         this.balance = balance;
         this.isJunior = isJunior;
+    }
+
+    @Ignore
+    public boolean ModifyBalance(Context context, int newBalance) throws ExecutionException, InterruptedException {
+        AccountRepository repository = BankDatabase.getInstance(context).accountRepository();
+        int updatedRows = repository.modifyBalance(id, newBalance).get();
+
+        return updatedRows == 1;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", balance=" + balance +
+                ", isJunior=" + isJunior +
+                ", createdAt='" + createdAt + '\'' +
+                '}';
     }
 }
 

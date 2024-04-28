@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
@@ -41,6 +42,7 @@ public class Transaction {
         this.amount = amount;
     }
 
+    @Ignore
     public Transaction(int fromAccountId, @NonNull String transactionType, int amount) {
         this("", fromAccountId, fromAccountId, transactionType, amount);
     }

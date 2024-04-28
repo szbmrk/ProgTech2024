@@ -11,6 +11,13 @@ public abstract class BankDatabase extends RoomDatabase {
     public abstract AccountDao accountDao();
     public abstract TransactionDao transactionDao();
 
+    public AccountRepository accountRepository() {
+        return new AccountRepository(accountDao());
+    }
+    public TransactionRepository transactionRepository() {
+        return new TransactionRepository(transactionDao());
+    }
+
     private static volatile BankDatabase instance;
 
     public static BankDatabase getInstance(Context context) {
