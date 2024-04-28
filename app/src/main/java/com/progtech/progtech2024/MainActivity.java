@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.progtech.progtech2024.database.Account;
 import com.progtech.progtech2024.database.AccountDao;
 import com.progtech.progtech2024.database.BankDatabase;
+import com.progtech.progtech2024.manager.AccountManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,10 +22,15 @@ public class MainActivity extends AppCompatActivity {
         AccountDao accountDao = db.accountDao();
 
         Account account = new Account("test user", "password", 500, true);
+
         // example reg
         if (accountDao.isUsernameAvailable(account.username)) {
             accountDao.register(account);
         } else {
         }
+
+        //example login
+        AccountManager accountManager = AccountManager.getInstance();
+        accountManager.setLoggedInAccount(accountDao.login(account.username, account.password));
     }
 }
