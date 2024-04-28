@@ -17,26 +17,4 @@ import com.progtech.progtech2024.database.repositories.TransactionRepository;
 public abstract class BankDatabase extends RoomDatabase {
     public abstract AccountDao accountDao();
     public abstract TransactionDao transactionDao();
-
-    public AccountRepository accountRepository() {
-        return new AccountRepository(accountDao());
-    }
-    public TransactionRepository transactionRepository() {
-        return new TransactionRepository(transactionDao());
-    }
-
-    private static volatile BankDatabase instance;
-
-    public static BankDatabase getInstance(Context context) {
-        if (instance == null) {
-            synchronized (BankDatabase.class) {
-                if (instance == null) {
-                    instance = Room.databaseBuilder(context.getApplicationContext(),
-                                    BankDatabase.class, "bank").allowMainThreadQueries()
-                            .build();
-                }
-            }
-        }
-        return instance;
-    }
 }

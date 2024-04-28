@@ -10,6 +10,7 @@ import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.manager.AccountManager;
+import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
 
@@ -20,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BankDatabase db = BankDatabase.getInstance(this);
+        DatabaseManager db = DatabaseManager.getInstance(this);
 
-        Account account = new Account("aaaaaaaa", "password", 500, true);
+        Account account = new Account("aaaaaaaa", "aaaaaa", "aaaa", 500, true);
         AccountRepository repository = db.accountRepository();
 
         //EXAMPLE REG LOGIN WITHDRAW
