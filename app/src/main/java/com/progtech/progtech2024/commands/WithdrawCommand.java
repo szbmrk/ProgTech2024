@@ -2,6 +2,7 @@ package com.progtech.progtech2024.commands;
 
 import android.content.Context;
 
+import com.progtech.progtech2024.builder.TransactionBuilder;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.models.Transaction;
@@ -48,8 +49,10 @@ public class WithdrawCommand implements IBankCommand {
 
     @Override
     public boolean PostTransaction() throws ExecutionException, InterruptedException {
-        Transaction transaction = new Transaction(account.id, "WITHDRAW", amount);
         TransactionRepository repository = BankDatabase.getInstance(context).transactionRepository();
+        TransactionBuilder tb = new TransactionBuilder();
+
+        Transaction transaction = tb.setFromAccountId(account.id).setAmount(amount).setTransactionType("WITHDRAW").build();
 
         long newTransactionId = repository.insert(transaction);
         if (newTransactionId < 1)

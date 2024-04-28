@@ -32,7 +32,12 @@ public class TransactionBuilder {
 
     public TransactionBuilder setAmount(int amount) {
         this.amount = amount;
-        return  this;
+        return this;
+    }
+
+    public  TransactionBuilder setTransactionType(String type) {
+        this.transactionType = type;
+        return this;
     }
 
     public Transaction build() {
