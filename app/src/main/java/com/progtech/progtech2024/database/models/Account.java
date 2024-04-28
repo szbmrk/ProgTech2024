@@ -15,8 +15,8 @@ import java.util.concurrent.ExecutionException;
 
 @Entity(tableName = "accounts")
 public class Account {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+    @PrimaryKey()
+    public String id;
     @NonNull
     public String username;
     @NonNull
@@ -28,7 +28,8 @@ public class Account {
     @ColumnInfo(defaultValue = "CURRENT_TIMESTAMP")
     public String createdAt;
 
-    public Account(@NonNull String username, @NonNull String password, int balance, boolean isJunior) {
+    public Account(@NonNull String id, @NonNull String username, @NonNull String password, int balance, boolean isJunior) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.balance = balance;
