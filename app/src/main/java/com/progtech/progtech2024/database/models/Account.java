@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey;
 
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
+import com.progtech.progtech2024.helper.DateFormatter;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.text.SimpleDateFormat;
@@ -40,11 +41,7 @@ public class Account {
         this.password = password;
         this.balance = balance;
         this.isJunior = isJunior;
-
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = formatter.format(date);
-        this.createdAt = formattedDate;
+        this.createdAt = DateFormatter.DateToString(new Date());
     }
 
     @Ignore

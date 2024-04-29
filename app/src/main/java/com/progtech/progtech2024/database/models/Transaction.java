@@ -7,6 +7,8 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.progtech.progtech2024.helper.DateFormatter;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -43,10 +45,6 @@ public class Transaction {
         this.toAccountId = toAccountId;
         this.transactionType = transactionType;
         this.amount = amount;
-
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = formatter.format(date);
-        this.createdAt = formattedDate;
+        this.createdAt = DateFormatter.DateToString(new Date());
     }
 }
