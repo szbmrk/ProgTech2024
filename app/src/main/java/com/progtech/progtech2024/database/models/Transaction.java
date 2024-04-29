@@ -7,6 +7,9 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Entity(tableName = "transactions", foreignKeys = { @ForeignKey(entity = Account.class,
         parentColumns = "id",
@@ -40,10 +43,10 @@ public class Transaction {
         this.toAccountId = toAccountId;
         this.transactionType = transactionType;
         this.amount = amount;
-    }
 
-    @Ignore
-    public Transaction(@NonNull int fromAccountId, @NonNull String transactionType, @NonNull int amount) {
-        this(null, fromAccountId, fromAccountId, transactionType, amount);
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = formatter.format(date);
+        this.createdAt = formattedDate;
     }
 }

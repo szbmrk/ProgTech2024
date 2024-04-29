@@ -12,6 +12,8 @@ import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 @Entity(tableName = "accounts")
@@ -38,6 +40,11 @@ public class Account {
         this.password = password;
         this.balance = balance;
         this.isJunior = isJunior;
+
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = formatter.format(date);
+        this.createdAt = formattedDate;
     }
 
     @Ignore

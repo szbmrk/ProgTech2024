@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseManager db = DatabaseManager.getInstance(this);
 
-        Account account = new Account("1234511-123312", "yyyy", "aaaa", 500, true);
+        Account account = new Account("1234511-123312", "yyyxxay", "aaaa", 500, true);
         AccountRepository repository = db.accountRepository();
 
         //EXAMPLE REG LOGIN WITHDRAW
