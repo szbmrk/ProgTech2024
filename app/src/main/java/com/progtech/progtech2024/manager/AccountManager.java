@@ -8,15 +8,12 @@ public class AccountManager {
 
     private static AccountManager instance;
     private Account loggedInAccount;
-    private Context context;
 
-    private AccountManager(Context context) {
-        this.context = context;
-    }
+    private AccountManager() {}
 
-    public static AccountManager getInstance(Context context) {
+    public static AccountManager getInstance() {
         if (instance == null) {
-            instance = new AccountManager(context);
+            instance = new AccountManager();
         }
         return instance;
     }

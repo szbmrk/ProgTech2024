@@ -24,33 +24,27 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseManager db = DatabaseManager.getInstance(this);
 
-        Account account = new Account("1234511-123312", "yyyxxay", "aaaa", 500, true);
-        AccountRepository repository = db.accountRepository();
+        Account account = new Account("123123", "a", "w", 500, true);
+        AccountRepository repository = DatabaseManager.getInstance(this).GetAccountRepository();
 
         //EXAMPLE REG LOGIN WITHDRAW
         try {
-            long newUserId = repository.register(account);
+            boolean succ = repository.Register(account);
+            Log.d("succ", succ ? "succ" : "aaaa");
 
-            if (newUserId > 0) {
-                Log.d("reg", "success");
+
+            Account loggedIn = repository.Login(account.username, account.password);
+            AccountManager.getInstance().setLoggedInAccount(loggedIn);
+
+            if (loggedIn != null) {
+                WithdrawCommand command = new WithdrawCommand(this, 200, loggedIn);
+                command.Call();
+                command.Undo();
+                DepositCommand depositCommand = new DepositCommand(this, 500, loggedIn);
+                depositCommand.Call();
+                command.Call();
+                Log.d("withdrawed", AccountManager.getInstance().getLoggedInAccount().toString());
             }
-            else {
-                Log.d("reg", "no success");
-            }
-
-            Account loggedIn = repository.login(account.username, account.password);
-            AccountManager.getInstance(this).setLoggedInAccount(loggedIn);
-
-            WithdrawCommand command = new WithdrawCommand(this, 200, loggedIn);
-            command.Call();
-            command.Undo();
-
-            DepositCommand depositCommand = new DepositCommand(this, 500, loggedIn);
-            depositCommand.Call();
-
-            command.Call();
-
-            Log.d("withdrawed", AccountManager.getInstance(this).getLoggedInAccount().toString());
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {

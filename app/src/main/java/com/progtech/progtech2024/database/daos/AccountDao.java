@@ -9,11 +9,11 @@ import com.progtech.progtech2024.database.models.Account;
 
 @Dao
 public interface AccountDao {
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     long register(Account account);
 
-    @Query("SELECT CASE WHEN EXISTS(SELECT 1 FROM accounts WHERE username = :username) THEN 1 ELSE 0 END")
-    boolean isUsernameAvailable(String username);
+    @Query("SELECT 1 FROM accounts WHERE username = :username")
+    long isUsernameAvailable(String username);
 
     @Query("SELECT * FROM accounts WHERE username = :username AND password = :password")
     Account login(String username, String password);

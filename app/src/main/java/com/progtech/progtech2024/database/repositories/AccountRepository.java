@@ -1,7 +1,13 @@
 package com.progtech.progtech2024.database.repositories;
 
+import android.content.Context;
+
+import androidx.room.Room;
+
+import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.daos.AccountDao;
+import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -12,28 +18,33 @@ public class AccountRepository {
     private final AccountDao accountDao;
     private final ExecutorService executorService;
 
+
     public AccountRepository(AccountDao accountDao) {
         this.accountDao = accountDao;
         this.executorService = Executors.newSingleThreadExecutor();
     }
 
-    public long register(Account account) throws ExecutionException, InterruptedException {
+    public boolean Register(Account account) throws ExecutionException, InterruptedException {
+        if (!IsUsernameAvailable(account.username)) {
+            return false;
+        }
+
         Future<Long> newId = executorService.submit(() -> accountDao.register(account));
-        return newId.get();
+        return newId.get() > 0;
     }
 
-    public boolean isUsernameAvailable(String username) throws ExecutionException, InterruptedException {
-        Future<Boolean> isAvailable = executorService.submit(() -> accountDao.isUsernameAvailable(username));
-        return isAvailable.get();
+    public Boolean IsUsernameAvailable(String username) throws ExecutionException, InterruptedException {
+        Future<Long> isAvailable = executorService.submit(() -> accountDao.isUsernameAvailable(username));
+        return isAvailable.get() < 1;
     }
 
-    public Account login(String username, String password) throws ExecutionException, InterruptedException {
+    public Account Login(String username, String password) throws ExecutionException, InterruptedException {
         Future<Account> account = executorService.submit(() -> accountDao.login(username, password));
         return account.get();
     }
 
-    public int modifyBalance(int userId, int newBalance) throws ExecutionException, InterruptedException {
+    public boolean ModifyBalance(int userId, int newBalance) throws ExecutionException, InterruptedException {
         Future<Integer> updatedRows = executorService.submit(() -> accountDao.modifyBalance(userId, newBalance));
-        return updatedRows.get();
+        return updatedRows.get() == 1;
     }
 }

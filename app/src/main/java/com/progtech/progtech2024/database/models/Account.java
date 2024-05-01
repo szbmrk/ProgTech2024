@@ -21,7 +21,6 @@ import java.util.concurrent.ExecutionException;
 public class Account {
     @PrimaryKey(autoGenerate = true)
     public int id;
-
     @NonNull
     public String accountNumber;
     @NonNull
@@ -46,8 +45,8 @@ public class Account {
 
     @Ignore
     public boolean ModifyBalance(Context context, int newBalance) throws ExecutionException, InterruptedException {
-        DatabaseManager dbManager = DatabaseManager.getInstance(context);
-        if (dbManager.ModifyBalance(id, newBalance)) {
+        AccountRepository accountRepository = DatabaseManager.getInstance(context).GetAccountRepository();
+        if (accountRepository.ModifyBalance(id, newBalance)) {
             balance = newBalance;
             return true;
         }

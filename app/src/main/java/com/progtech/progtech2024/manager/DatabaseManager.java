@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.progtech.progtech2024.database.BankDatabase;
+import com.progtech.progtech2024.database.daos.AccountDao;
+import com.progtech.progtech2024.database.daos.TransactionDao;
 import com.progtech.progtech2024.database.models.Transaction;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
 import com.progtech.progtech2024.database.repositories.TransactionRepository;
@@ -12,26 +14,16 @@ import com.progtech.progtech2024.database.repositories.TransactionRepository;
 import java.util.concurrent.ExecutionException;
 
 public class DatabaseManager {
-    public AccountRepository accountRepository() {
+
+    public AccountRepository GetAccountRepository() {
         return new AccountRepository(db.accountDao());
     }
-    public TransactionRepository transactionRepository() {
-        return new TransactionRepository(db.transactionDao());
+
+    public TransactionRepository GetTransactionRepository() {
+        return  new TransactionRepository(db.transactionDao());
     }
 
-    public boolean PostTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
-        long newTransactionId = transactionRepository().insert(transaction);
-        if (newTransactionId < 1)
-            return false;
-        return true;
-    }
-
-    public boolean ModifyBalance(int userId, int newBalance) throws ExecutionException, InterruptedException {
-        int updatedRows = accountRepository().modifyBalance(userId, newBalance);
-        return updatedRows == 1;
-    }
-
-    private static DatabaseManager instance;
+    private static volatile DatabaseManager instance;
     private static volatile BankDatabase db;
 
     public static DatabaseManager getInstance(Context context) {

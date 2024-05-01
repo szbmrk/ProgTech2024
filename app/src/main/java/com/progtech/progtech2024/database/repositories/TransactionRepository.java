@@ -1,7 +1,10 @@
 package com.progtech.progtech2024.database.repositories;
 
+import android.content.Context;
+
 import com.progtech.progtech2024.database.models.Transaction;
 import com.progtech.progtech2024.database.daos.TransactionDao;
+import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -17,8 +20,8 @@ public class TransactionRepository {
         this.executorService = Executors.newSingleThreadExecutor();
     }
 
-    public long insert(Transaction transaction) throws ExecutionException, InterruptedException {
+    public boolean PostTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
         Future<Long> newId = executorService.submit(() -> transactionDao.insert(transaction));
-        return newId.get();
+        return newId.get() > 0;
     }
 }
