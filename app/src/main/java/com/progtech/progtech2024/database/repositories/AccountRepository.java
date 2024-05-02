@@ -7,6 +7,9 @@ import androidx.room.Room;
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.daos.AccountDao;
+import com.progtech.progtech2024.exceptions.database.FailedQueryException;
+import com.progtech.progtech2024.exceptions.database.InvalidUsernameOrPasswordException;
+import com.progtech.progtech2024.exceptions.database.UserAlreadyTakenException;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
@@ -24,13 +27,18 @@ public class AccountRepository {
         this.executorService = Executors.newSingleThreadExecutor();
     }
 
-    public boolean Register(Account account) throws ExecutionException, InterruptedException {
+    public long Register(Account account) throws ExecutionException, InterruptedException, UserAlreadyTakenException, FailedQueryException {
         if (!IsUsernameAvailable(account.username)) {
-            return false;
+            throw new UserAlreadyTakenException();
         }
 
         Future<Long> newId = executorService.submit(() -> accountDao.register(account));
-        return newId.get() > 0;
+
+        if (newId.get() < 0) {
+            throw new FailedQueryException("Register failed!");
+        }
+
+        return newId.get();
     }
 
     public Boolean IsUsernameAvailable(String username) throws ExecutionException, InterruptedException {
@@ -38,8 +46,13 @@ public class AccountRepository {
         return isAvailable.get() < 1;
     }
 
-    public Account Login(String username, String password) throws ExecutionException, InterruptedException {
+    public Account Login(String username, String password) throws ExecutionException, InterruptedException, InvalidUsernameOrPasswordException {
         Future<Account> account = executorService.submit(() -> accountDao.login(username, password));
+
+        if (account.get() == null) {
+            throw new InvalidUsernameOrPasswordException();
+        }
+
         return account.get();
     }
 
