@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.progtech.progtech2024.database.models.Transaction;
 
 public class TransactionBuilder {
+    private int transactionId = 0;
 
     private String message;
     private int fromAccountId;
@@ -16,6 +17,11 @@ public class TransactionBuilder {
     }
     public TransactionBuilder setFromAccountId(int id) {
         this.fromAccountId = id;
+        return this;
+    }
+
+    public TransactionBuilder setTransactionId(int id) {
+        this.transactionId = id;
         return this;
     }
 
@@ -40,6 +46,10 @@ public class TransactionBuilder {
     }
 
     public Transaction build() {
+        if (transactionId != 0) {
+            return new Transaction(transactionId, message, fromAccountId, toAccountId, transactionType, amount);
+        }
+
         return new Transaction(message, fromAccountId, toAccountId, transactionType, amount);
     }
 }

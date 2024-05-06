@@ -1,6 +1,7 @@
 package com.progtech.progtech2024.database.models;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -49,7 +50,6 @@ public class Transaction {
     }
 
     @Ignore
-
     public Transaction(int id, String message, int fromAccountId, int toAccountId, @NonNull String transactionType, int amount) {
         this.id = id;
         this.message = message;
@@ -58,5 +58,17 @@ public class Transaction {
         this.transactionType = transactionType;
         this.amount = amount;
         this.createdAt = DateFormatter.DateToString(new Date());
+    }
+
+    @Ignore
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Transaction)) return false;
+
+        Transaction other = (Transaction)obj;
+
+        return this.id == other.id;
     }
 }

@@ -29,4 +29,20 @@ public class AccountUnitTest {
         account.TestModifyBalance(InstrumentationRegistry.getInstrumentation().getTargetContext(), 1000);
         assertEquals(1000, account.balance);
     }
+
+    @Test
+    public void testAccountEquals_true() {
+        Account account1 = new Account(1, "12345", "user1", "pass1", 500, false);
+        Account account2 = new Account(1, "12345", "user1", "pass1", 500, false);
+
+        assertEquals(true, account1.equals(account2));
+    }
+
+    @Test
+    public void testAccountEquals_false() {
+        Account account1 = new Account(1, "12345", "user1", "pass1", 500, false);
+        Account account2 = new Account(2, "12345", "user2", "pass2", 500, false);
+
+        assertEquals(false, account1.equals(account2));
+    }
 }
