@@ -14,7 +14,6 @@ public class TransactionBuilder {
 
     public TransactionBuilder() {
     }
-
     public TransactionBuilder setFromAccountId(int id) {
         this.fromAccountId = id;
         return this;

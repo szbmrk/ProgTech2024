@@ -1,4 +1,4 @@
-package com.progtech.progtech2024.database.daos;
+package com.progtech.progtech2024.database.repositories;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -21,10 +21,12 @@ public class AccountRepositoryUnitTest {
     private AccountRepository accountRepository;
 
     @Before
-    public void SetUp() {
+    public void SetUp() throws Exception {
         accountRepository = DatabaseManager.getInstance
                         (InstrumentationRegistry.getInstrumentation().getTargetContext())
-                .GetAccountRepository();
+                .GetTestAccountRepository();
+
+        accountRepository.DeleteAll();
     }
 
     @Test

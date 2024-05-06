@@ -23,16 +23,17 @@ public class DatabaseManager {
         return  new TransactionRepository(db.transactionDao());
     }
 
-    public AccountDao GetAccountDao() {
-        return db.accountDao();
+    public AccountRepository GetTestAccountRepository() {
+        return new AccountRepository(testDb.accountDao());
     }
 
-    public TransactionDao GetTransactionDao() {
-        return db.transactionDao();
+    public TransactionRepository GetTestTransactionRepository() {
+        return new TransactionRepository(testDb.transactionDao());
     }
 
     private static volatile DatabaseManager instance;
     private static volatile BankDatabase db;
+    private static volatile BankDatabase testDb;
 
     public static DatabaseManager getInstance(Context context) {
         if (instance == null) {
@@ -40,6 +41,10 @@ public class DatabaseManager {
                 if (instance == null) {
                     db = Room.databaseBuilder(context.getApplicationContext(),
                                     BankDatabase.class, "bank").allowMainThreadQueries()
+                            .build();
+
+                    testDb = Room.databaseBuilder(context.getApplicationContext(),
+                                    BankDatabase.class, "bank_test").allowMainThreadQueries()
                             .build();
                     instance = new DatabaseManager();
                 }

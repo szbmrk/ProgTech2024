@@ -60,4 +60,9 @@ public class AccountRepository {
         Future<Integer> updatedRows = executorService.submit(() -> accountDao.modifyBalance(userId, newBalance));
         return updatedRows.get() == 1;
     }
+
+    public int DeleteAll() throws ExecutionException, InterruptedException {
+        Future<Integer> deletedRows = executorService.submit(() -> accountDao.deleteAll());
+        return deletedRows.get();
+    }
 }

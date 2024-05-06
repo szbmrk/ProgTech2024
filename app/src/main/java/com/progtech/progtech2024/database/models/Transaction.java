@@ -47,4 +47,16 @@ public class Transaction {
         this.amount = amount;
         this.createdAt = DateFormatter.DateToString(new Date());
     }
+
+    @Ignore
+
+    public Transaction(int id, String message, int fromAccountId, int toAccountId, @NonNull String transactionType, int amount) {
+        this.id = id;
+        this.message = message;
+        this.fromAccountId = fromAccountId;
+        this.toAccountId = toAccountId;
+        this.transactionType = transactionType;
+        this.amount = amount;
+        this.createdAt = DateFormatter.DateToString(new Date());
+    }
 }
