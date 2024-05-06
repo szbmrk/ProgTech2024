@@ -66,6 +66,17 @@ public class Account {
         return false;
     }
 
+    @Ignore
+    public boolean TestModifyBalance(Context context, int newBalance) throws ExecutionException, InterruptedException {
+        AccountRepository accountRepository = DatabaseManager.getInstance(context).GetTestAccountRepository();
+        if (accountRepository.ModifyBalance(id, newBalance)) {
+            balance = newBalance;
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Account{" +

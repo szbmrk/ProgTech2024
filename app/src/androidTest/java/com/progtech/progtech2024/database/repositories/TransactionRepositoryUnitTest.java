@@ -26,8 +26,8 @@ public class TransactionRepositoryUnitTest {
         DatabaseManager dbManager = DatabaseManager.getInstance
                 (InstrumentationRegistry.getInstrumentation().getTargetContext());
 
-        accountRepository = dbManager.GetAccountRepository();
-        transactionRepository = dbManager.GetTransactionRepository();
+        accountRepository = dbManager.GetTestAccountRepository();
+        transactionRepository = dbManager.GetTestTransactionRepository();
 
         accountRepository.DeleteAll();
     }
