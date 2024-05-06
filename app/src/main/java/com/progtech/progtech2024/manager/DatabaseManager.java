@@ -23,6 +23,14 @@ public class DatabaseManager {
         return  new TransactionRepository(db.transactionDao());
     }
 
+    public AccountDao GetAccountDao() {
+        return db.accountDao();
+    }
+
+    public TransactionDao GetTransactionDao() {
+        return db.transactionDao();
+    }
+
     private static volatile DatabaseManager instance;
     private static volatile BankDatabase db;
 

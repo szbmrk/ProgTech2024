@@ -3,6 +3,7 @@ package com.progtech.progtech2024.database.models;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -44,6 +45,17 @@ public class Account {
     }
 
     @Ignore
+    public Account(int id, @NonNull String accountNumber, @NonNull String username, @NonNull String password, int balance, boolean isJunior) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.username = username;
+        this.password = password;
+        this.balance = balance;
+        this.isJunior = isJunior;
+        this.createdAt = DateFormatter.DateToString(new Date());
+    }
+
+    @Ignore
     public boolean ModifyBalance(Context context, int newBalance) throws ExecutionException, InterruptedException {
         AccountRepository accountRepository = DatabaseManager.getInstance(context).GetAccountRepository();
         if (accountRepository.ModifyBalance(id, newBalance)) {
@@ -65,6 +77,17 @@ public class Account {
                 ", isJunior=" + isJunior +
                 ", createdAt='" + createdAt + '\'' +
                 '}';
+    }
+
+    @Ignore
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Account)) return false;
+
+        Account other = (Account)obj;
+
+        return this.id == other.id;
     }
 }
 
