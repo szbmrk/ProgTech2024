@@ -3,18 +3,15 @@ package com.progtech.progtech2024.database.repositories;
 import static org.junit.Assert.assertEquals;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.progtech.progtech2024.builder.TransactionBuilder;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.models.Transaction;
-import com.progtech.progtech2024.manager.DatabaseManager;
+import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.concurrent.ExecutionException;
 
 @RunWith(AndroidJUnit4.class)
 public class TransactionRepositoryUnitTest {
@@ -23,13 +20,8 @@ public class TransactionRepositoryUnitTest {
 
     @Before
     public void SetUp() throws Exception {
-        DatabaseManager dbManager = DatabaseManager.getInstance
-                (InstrumentationRegistry.getInstrumentation().getTargetContext());
-
-        accountRepository = dbManager.GetTestAccountRepository();
-        transactionRepository = dbManager.GetTestTransactionRepository();
-
-        accountRepository.DeleteAll();
+        accountRepository = TestRepositoriesHelper.GetTestAccountRepository();
+        transactionRepository = TestRepositoriesHelper.GetTestTransactionRepository();
     }
 
     @Test

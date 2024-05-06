@@ -9,6 +9,7 @@ import com.progtech.progtech2024.database.repositories.AccountRepository;
 import com.progtech.progtech2024.exceptions.database.FailedQueryException;
 import com.progtech.progtech2024.exceptions.database.InvalidUsernameOrPasswordException;
 import com.progtech.progtech2024.exceptions.database.UserAlreadyTakenException;
+import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 import com.progtech.progtech2024.manager.DatabaseManager;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,11 +23,7 @@ public class AccountRepositoryUnitTest {
 
     @Before
     public void SetUp() throws Exception {
-        accountRepository = DatabaseManager.getInstance
-                        (InstrumentationRegistry.getInstrumentation().getTargetContext())
-                .GetTestAccountRepository();
-
-        accountRepository.DeleteAll();
+        accountRepository = TestRepositoriesHelper.GetTestAccountRepository();
     }
 
     @Test
