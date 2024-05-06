@@ -3,19 +3,14 @@ package com.progtech.progtech2024.database.repositories;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.platform.app.InstrumentationRegistry;
+
 import com.progtech.progtech2024.database.models.Account;
-import com.progtech.progtech2024.database.repositories.AccountRepository;
-import com.progtech.progtech2024.exceptions.database.FailedQueryException;
 import com.progtech.progtech2024.exceptions.database.InvalidUsernameOrPasswordException;
-import com.progtech.progtech2024.exceptions.database.UserAlreadyTakenException;
 import com.progtech.progtech2024.helper.TestRepositoriesHelper;
-import com.progtech.progtech2024.manager.DatabaseManager;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.concurrent.ExecutionException;
 
 @RunWith(AndroidJUnit4.class)
 public class AccountRepositoryUnitTest {
