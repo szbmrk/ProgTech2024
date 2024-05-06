@@ -28,7 +28,7 @@ public class AccountRepositoryUnitTest {
     }
 
     @Test
-    public void testRegister() throws FailedQueryException, ExecutionException, UserAlreadyTakenException, InterruptedException {
+    public void testRegister() throws Exception {
         Account account = new Account(1, "12345", "user1", "pass1", 500, true);
 
         long newId = accountRepository.Register(account);
@@ -36,7 +36,7 @@ public class AccountRepositoryUnitTest {
     }
 
     @Test
-    public void testIsUsernameAvailable_UsernameAvailable() throws ExecutionException, InterruptedException {
+    public void testIsUsernameAvailable_UsernameAvailable() throws Exception {
         String availableUsername = "available_username";
 
         boolean isAvailable = accountRepository.IsUsernameAvailable(availableUsername);
@@ -44,7 +44,7 @@ public class AccountRepositoryUnitTest {
     }
 
     @Test
-    public void testIsUsernameAvailable_UsernameTaken() throws FailedQueryException, UserAlreadyTakenException, ExecutionException, InterruptedException {
+    public void testIsUsernameAvailable_UsernameTaken() throws Exception {
         Account account = new Account(2, "12345", "taken_username", "pass1", 500, true);
 
         accountRepository.Register(account);
@@ -67,7 +67,7 @@ public class AccountRepositoryUnitTest {
     }
 
     @Test
-    public void testLogin_InvalidLogin() throws ExecutionException, InterruptedException {
+    public void testLogin_InvalidLogin() throws Exception {
         String username = "wrong_username";
         String password = "wrong_password";
 
