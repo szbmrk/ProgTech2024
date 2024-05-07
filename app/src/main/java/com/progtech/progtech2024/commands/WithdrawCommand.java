@@ -7,6 +7,7 @@ import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.models.Transaction;
 import com.progtech.progtech2024.database.repositories.TransactionRepository;
+import com.progtech.progtech2024.exceptions.commands.InsufficientFundsException;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
@@ -18,10 +19,10 @@ public class WithdrawCommand extends ABankCommand {
     }
 
     @Override
-    public void Call() throws ExecutionException, InterruptedException {
+    public void Call() throws ExecutionException, InterruptedException, InsufficientFundsException {
         if (fromAccount.balance < amount) {
             succeeded = false;
-            return;
+            throw new InsufficientFundsException();
         }
 
         if (PostTransaction()) {
@@ -31,10 +32,10 @@ public class WithdrawCommand extends ABankCommand {
     }
 
     @Override
-    public void TestCall() throws ExecutionException, InterruptedException {
+    public void TestCall() throws ExecutionException, InterruptedException, InsufficientFundsException {
         if (fromAccount.balance < amount) {
             succeeded = false;
-            return;
+            throw new InsufficientFundsException();
         }
 
         if (TestPostTransaction()) {

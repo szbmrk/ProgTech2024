@@ -12,7 +12,6 @@ public class TestRepositoriesHelper {
         AccountRepository accountRepository = dbManager.GetTestAccountRepository();
         return accountRepository;
     }
-
     public static TransactionRepository GetTestTransactionRepository() throws Exception {
         TransactionRepository transactionRepository = dbManager.GetTestTransactionRepository();
         return transactionRepository;

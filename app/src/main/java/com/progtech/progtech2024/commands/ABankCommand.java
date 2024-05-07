@@ -5,6 +5,7 @@ import android.content.Context;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.models.Transaction;
 import com.progtech.progtech2024.database.repositories.TransactionRepository;
+import com.progtech.progtech2024.exceptions.commands.InsufficientFundsException;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
@@ -27,10 +28,10 @@ public abstract class ABankCommand {
         this(context, amount, fromAccount, fromAccount);
     }
 
-    protected abstract void Call() throws ExecutionException, InterruptedException;
+    protected abstract void Call() throws ExecutionException, InterruptedException, InsufficientFundsException;
     protected abstract void Undo() throws ExecutionException, InterruptedException;
 
-    protected abstract void TestCall() throws ExecutionException, InterruptedException;
+    protected abstract void TestCall() throws ExecutionException, InterruptedException, InsufficientFundsException;
     protected abstract void TestUndo() throws ExecutionException, InterruptedException;
 
     protected abstract Transaction BuildTransaction();

@@ -42,7 +42,13 @@ public class WithdrawCommandUnitTest {
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
                 600, account
         );
-        withdrawCommand.TestCall();
+        try {
+            withdrawCommand.TestCall();
+
+        }
+        catch (Exception e) {
+            assertEquals("Insufficient funds!", e.getMessage());
+        }
 
         assertEquals(500, account.balance);
         assertEquals(false, withdrawCommand.succeeded);

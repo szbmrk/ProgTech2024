@@ -12,6 +12,7 @@ import com.progtech.progtech2024.commands.WithdrawCommand;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
 import com.progtech.progtech2024.database.BankDatabase;
+import com.progtech.progtech2024.exceptions.commands.InsufficientFundsException;
 import com.progtech.progtech2024.exceptions.database.FailedQueryException;
 import com.progtech.progtech2024.exceptions.database.InvalidUsernameOrPasswordException;
 import com.progtech.progtech2024.exceptions.database.UserAlreadyTakenException;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 depositCommand.Call();
                 command.Call();
                 Log.d("withdrawed", AccountManager.getInstance().getLoggedInAccount().toString());
-            } catch (InvalidUsernameOrPasswordException e) {
+            } catch (InvalidUsernameOrPasswordException | InsufficientFundsException e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();;
             }
 
