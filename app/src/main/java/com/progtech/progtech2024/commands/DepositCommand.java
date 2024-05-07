@@ -6,6 +6,7 @@ import com.progtech.progtech2024.builder.TransactionBuilder;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.models.Transaction;
 import com.progtech.progtech2024.database.repositories.TransactionRepository;
+import com.progtech.progtech2024.exceptions.commands.InsufficientFundsException;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
@@ -33,13 +34,13 @@ public class DepositCommand extends ABankCommand {
     }
 
     @Override
-    public void Undo() throws ExecutionException, InterruptedException {
+    public void Undo() throws ExecutionException, InterruptedException, InsufficientFundsException {
         WithdrawCommand withdrawCommand = new WithdrawCommand(context, amount, fromAccount);
         withdrawCommand.Call();
     }
 
     @Override
-    public void TestUndo() throws ExecutionException, InterruptedException {
+    public void TestUndo() throws ExecutionException, InterruptedException, InsufficientFundsException {
         WithdrawCommand withdrawCommand = new WithdrawCommand(context, amount, fromAccount);
         withdrawCommand.TestCall();
     }

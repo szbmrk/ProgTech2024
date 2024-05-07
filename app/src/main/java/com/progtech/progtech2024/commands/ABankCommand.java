@@ -29,10 +29,10 @@ public abstract class ABankCommand {
     }
 
     protected abstract void Call() throws ExecutionException, InterruptedException, InsufficientFundsException;
-    protected abstract void Undo() throws ExecutionException, InterruptedException;
+    protected abstract void Undo() throws ExecutionException, InterruptedException, InsufficientFundsException;
 
     protected abstract void TestCall() throws ExecutionException, InterruptedException, InsufficientFundsException;
-    protected abstract void TestUndo() throws ExecutionException, InterruptedException;
+    protected abstract void TestUndo() throws ExecutionException, InterruptedException, InsufficientFundsException;
 
     protected abstract Transaction BuildTransaction();
     protected boolean PostTransaction() throws ExecutionException, InterruptedException {
