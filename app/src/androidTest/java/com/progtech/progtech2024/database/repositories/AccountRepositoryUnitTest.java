@@ -25,10 +25,10 @@ public class AccountRepositoryUnitTest {
 
     @Test
     public void testRegister() throws Exception {
-        Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
+        Account account = DummyAccountCreator.CreateDummyAccount(500, false);
 
         long newId = accountRepository.Register(account);
-        assertEquals(1, newId);
+        assertEquals(account.id, newId);
     }
 
     @Test

@@ -12,4 +12,10 @@ public class DummyAccountCreator {
         id++;
         return account;
     }
+
+    public static Account CreateDummyAccount(int balance, boolean isJunior) {
+        Account account = new Account(id, "12345" + id, "user" + id, "pass" + id, balance, isJunior);
+        id++;
+        return account;
+    }
 }
