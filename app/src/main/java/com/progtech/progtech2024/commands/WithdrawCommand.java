@@ -31,12 +31,34 @@ public class WithdrawCommand extends ABankCommand {
     }
 
     @Override
+    public void TestCall() throws ExecutionException, InterruptedException {
+        if (fromAccount.balance < amount) {
+            succeeded = false;
+            return;
+        }
+
+        if (TestPostTransaction()) {
+            int newBalance = fromAccount.balance - amount;
+            succeeded = fromAccount.TestModifyBalance(context, newBalance);
+        }
+    }
+
+    @Override
     public void Undo() throws ExecutionException, InterruptedException {
         if (!succeeded)
             return;
 
         DepositCommand depositCommand = new DepositCommand(context, amount, fromAccount);
         depositCommand.Call();
+    }
+
+    @Override
+    public void TestUndo() throws ExecutionException, InterruptedException {
+        if (!succeeded)
+            return;
+
+        DepositCommand depositCommand = new DepositCommand(context, amount, fromAccount);
+        depositCommand.TestCall();
     }
 
     @Override

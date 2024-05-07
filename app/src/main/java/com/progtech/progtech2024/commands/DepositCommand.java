@@ -25,9 +25,23 @@ public class DepositCommand extends ABankCommand {
     }
 
     @Override
+    public void TestCall() throws ExecutionException, InterruptedException {
+        if (super.TestPostTransaction()) {
+            int newBalance = fromAccount.balance + amount;
+            fromAccount.TestModifyBalance(context, newBalance);
+        }
+    }
+
+    @Override
     public void Undo() throws ExecutionException, InterruptedException {
         WithdrawCommand withdrawCommand = new WithdrawCommand(context, amount, fromAccount);
         withdrawCommand.Call();
+    }
+
+    @Override
+    public void TestUndo() throws ExecutionException, InterruptedException {
+        WithdrawCommand withdrawCommand = new WithdrawCommand(context, amount, fromAccount);
+        withdrawCommand.TestCall();
     }
 
     @Override

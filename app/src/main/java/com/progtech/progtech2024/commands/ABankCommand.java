@@ -30,9 +30,18 @@ public abstract class ABankCommand {
     protected abstract void Call() throws ExecutionException, InterruptedException;
     protected abstract void Undo() throws ExecutionException, InterruptedException;
 
+    protected abstract void TestCall() throws ExecutionException, InterruptedException;
+    protected abstract void TestUndo() throws ExecutionException, InterruptedException;
+
     protected abstract Transaction BuildTransaction();
     protected boolean PostTransaction() throws ExecutionException, InterruptedException {
         TransactionRepository transactionRepository = DatabaseManager.getInstance(context).GetTransactionRepository();
+        succeeded = transactionRepository.PostTransaction(BuildTransaction());
+        return succeeded;
+    }
+
+    protected boolean TestPostTransaction() throws ExecutionException, InterruptedException {
+        TransactionRepository transactionRepository = DatabaseManager.getInstance(context).GetTestTransactionRepository();
         succeeded = transactionRepository.PostTransaction(BuildTransaction());
         return succeeded;
     }
