@@ -11,7 +11,7 @@ import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DepositUnitTest {
+public class DepositCommandUnitTest {
     AccountRepository accountRepository;
 
     @Before
@@ -30,10 +30,11 @@ public class DepositUnitTest {
         depositCommand.TestCall();
 
         assertEquals(1000, account.balance);
+        assertEquals(true, depositCommand.succeeded);
     }
 
     @Test
-    public void TestDepositUndo() throws Exception {
+    public void testDepositUndo() throws Exception {
         Account account = new Account(2, "123456", "user2", "pass2", 500, false);
         accountRepository.Register(account);
         DepositCommand depositCommand = new DepositCommand(
@@ -43,6 +44,7 @@ public class DepositUnitTest {
         depositCommand.TestCall();
         depositCommand.TestUndo();
 
+        assertEquals(true, depositCommand.succeeded);
         assertEquals(500, account.balance);
     }
 }

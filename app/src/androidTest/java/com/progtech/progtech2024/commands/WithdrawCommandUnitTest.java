@@ -11,7 +11,7 @@ import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-public class WithdrawUnitTest {
+public class WithdrawCommandUnitTest {
     AccountRepository accountRepository;
 
     @Before
@@ -48,7 +48,7 @@ public class WithdrawUnitTest {
     }
 
     @Test
-    public void TestWithdrawUndo() throws Exception {
+    public void testWithdrawUndo() throws Exception {
         Account account = new Account(3, "1234567", "user3", "pass3", 500, false);
         accountRepository.Register(account);
         WithdrawCommand withdrawCommand = new WithdrawCommand(
@@ -58,6 +58,7 @@ public class WithdrawUnitTest {
         withdrawCommand.TestCall();
         withdrawCommand.TestUndo();
 
+        assertEquals(true, withdrawCommand.succeeded);
         assertEquals(500, account.balance);
     }
 }
