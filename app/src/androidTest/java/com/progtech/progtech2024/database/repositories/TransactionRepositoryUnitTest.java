@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.progtech.progtech2024.builder.TransactionBuilder;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.models.Transaction;
+import com.progtech.progtech2024.helper.DummyAccountCreator;
 import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 
 import org.junit.Before;
@@ -22,16 +23,16 @@ public class TransactionRepositoryUnitTest {
     public void SetUp() throws Exception {
         accountRepository = TestRepositoriesHelper.GetTestAccountRepository();
         transactionRepository = TestRepositoriesHelper.GetTestTransactionRepository();
+        TestRepositoriesHelper.DeleteDataFromTestRepositories();
     }
 
     @Test
     public void testPostTransaction() throws Exception {
-        Account account = new Account(1, "12345", "user1", "pass1", 500, false);
-        accountRepository.Register(account);
+        Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
         TransactionBuilder tb = new TransactionBuilder();
         Transaction transaction = tb
-                .setToAccountId(1).setFromAccountId(1)
+                .setToAccountId(account.id).setFromAccountId(account.id)
                 .setTransactionType("DEPOSIT").setAmount(500).build();
         boolean success = transactionRepository.PostTransaction(transaction);
         assertEquals(true, success);

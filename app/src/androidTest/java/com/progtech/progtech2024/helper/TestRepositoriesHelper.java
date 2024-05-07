@@ -10,13 +10,15 @@ public class TestRepositoriesHelper {
     static DatabaseManager dbManager = DatabaseManager.getInstance(InstrumentationRegistry.getInstrumentation().getTargetContext());
     public static AccountRepository GetTestAccountRepository() throws Exception {
         AccountRepository accountRepository = dbManager.GetTestAccountRepository();
-        accountRepository.DeleteAll();
         return accountRepository;
     }
 
     public static TransactionRepository GetTestTransactionRepository() throws Exception {
         TransactionRepository transactionRepository = dbManager.GetTestTransactionRepository();
-        dbManager.GetTestAccountRepository().DeleteAll();
         return transactionRepository;
+    }
+
+    public static void DeleteDataFromTestRepositories() throws Exception {
+        GetTestAccountRepository().DeleteAll();
     }
 }

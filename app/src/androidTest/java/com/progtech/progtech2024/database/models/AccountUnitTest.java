@@ -20,6 +20,7 @@ public class AccountUnitTest {
     @Before
     public void SetUp() throws Exception {
         accountRepository = TestRepositoriesHelper.GetTestAccountRepository();
+        TestRepositoriesHelper.DeleteDataFromTestRepositories();
     }
 
     @Test

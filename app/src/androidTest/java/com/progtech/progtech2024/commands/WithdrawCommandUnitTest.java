@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
+import com.progtech.progtech2024.helper.DummyAccountCreator;
 import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 
 import org.junit.Before;
@@ -21,8 +22,8 @@ public class WithdrawCommandUnitTest {
 
     @Test
     public void testWithdrawCall_Success() throws Exception {
-        Account account = new Account(1, "12345", "user1", "pass1", 500, false);
-        accountRepository.Register(account);
+        Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
+
         WithdrawCommand withdrawCommand = new WithdrawCommand(
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
                 300, account
@@ -35,8 +36,8 @@ public class WithdrawCommandUnitTest {
 
     @Test
     public void testWithdrawCall_Failed() throws Exception {
-        Account account = new Account(2, "123456", "user2", "pass2", 500, false);
-        accountRepository.Register(account);
+        Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
+
         WithdrawCommand withdrawCommand = new WithdrawCommand(
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
                 600, account
@@ -49,8 +50,8 @@ public class WithdrawCommandUnitTest {
 
     @Test
     public void testWithdrawUndo() throws Exception {
-        Account account = new Account(3, "1234567", "user3", "pass3", 500, false);
-        accountRepository.Register(account);
+        Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
+
         WithdrawCommand withdrawCommand = new WithdrawCommand(
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
                 300, account

@@ -6,6 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.exceptions.database.InvalidUsernameOrPasswordException;
+import com.progtech.progtech2024.helper.DummyAccountCreator;
 import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 
 import org.junit.Before;
@@ -19,11 +20,12 @@ public class AccountRepositoryUnitTest {
     @Before
     public void SetUp() throws Exception {
         accountRepository = TestRepositoriesHelper.GetTestAccountRepository();
+        TestRepositoriesHelper.DeleteDataFromTestRepositories();
     }
 
     @Test
     public void testRegister() throws Exception {
-        Account account = new Account(1, "12345", "user1", "pass1", 500, true);
+        Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
         long newId = accountRepository.Register(account);
         assertEquals(1, newId);
@@ -39,9 +41,7 @@ public class AccountRepositoryUnitTest {
 
     @Test
     public void testIsUsernameAvailable_UsernameTaken() throws Exception {
-        Account account = new Account(2, "12345", "taken_username", "pass1", 500, true);
-
-        accountRepository.Register(account);
+        Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
         boolean isAvailable = accountRepository.IsUsernameAvailable(account.username);
 
         assertEquals(false, isAvailable);
@@ -49,13 +49,8 @@ public class AccountRepositoryUnitTest {
 
     @Test
     public void testLogin_SuccessfulLogin() throws Exception {
-        String accountNumber = "12345";
-        String username = "user3";
-        String password = "password3";
-
-        Account expectedAccount = new Account(3, accountNumber, username, password, 0, false);
-        accountRepository.Register(expectedAccount);
-        Account loggedIn = accountRepository.Login(username, password);
+        Account expectedAccount = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
+        Account loggedIn = accountRepository.Login(expectedAccount.username, expectedAccount.password);
 
         assertEquals(expectedAccount, loggedIn);
     }
@@ -75,17 +70,11 @@ public class AccountRepositoryUnitTest {
 
     @Test
     public void testModifyBalance() throws Exception {
-        int userId = 4;
-        int newBalance = 100;
+        int newBalance = 1000;
 
-        String accountNumber = "12345";
-        String username = "user4";
-        String password = "password1";
+        Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
-        Account expectedAccount = new Account(userId, accountNumber, username, password, 0, false);
-        accountRepository.Register(expectedAccount);
-
-        boolean rowsAffected = accountRepository.ModifyBalance(userId, newBalance);
+        boolean rowsAffected = accountRepository.ModifyBalance(account.id, newBalance);
 
         assertEquals(true, rowsAffected);
     }
