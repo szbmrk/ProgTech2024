@@ -1,4 +1,4 @@
-package com.progtech.progtech2024;
+package com.progtech.progtech2024.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.progtech.progtech2024.R;
 import com.progtech.progtech2024.commands.DepositCommand;
 import com.progtech.progtech2024.commands.WithdrawCommand;
 import com.progtech.progtech2024.database.models.Account;
