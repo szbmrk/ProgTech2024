@@ -60,7 +60,7 @@ public class AccountRepositoryUnitTest {
         String username = "wrong_username";
         String password = "wrong_password";
 
-        Account account = accountRepository.Login(username, password);
+        accountRepository.Login(username, password);
     }
 
     @Test
