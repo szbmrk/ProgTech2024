@@ -17,11 +17,9 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class TransactionRepositoryUnitTest {
     private TransactionRepository transactionRepository;
-    private AccountRepository accountRepository;
 
     @Before
     public void SetUp() throws Exception {
-        accountRepository = TestRepositoriesHelper.GetTestAccountRepository();
         transactionRepository = TestRepositoriesHelper.GetTestTransactionRepository();
         TestRepositoriesHelper.DeleteDataFromTestRepositories();
     }
