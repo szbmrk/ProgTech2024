@@ -27,7 +27,7 @@ public class TransactionRepositoryUnitTest {
     }
 
     @Test
-    public void testPostTransaction() throws Exception {
+    public void testPostTransaction_Deposit_WithAmount500() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
         TransactionBuilder tb = new TransactionBuilder();
