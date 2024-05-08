@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class DateFormatterUnitTest {
     @Test
-    public void testDateToString() throws ParseException {
+    public void testDateToString_2024_05_07_15_30_00() throws ParseException {
         String dateString = "2024-05-07 15:30:00";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = formatter.parse(dateString);

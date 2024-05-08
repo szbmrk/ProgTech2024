@@ -22,7 +22,7 @@ public class WithdrawCommandUnitTest {
     }
 
     @Test
-    public void testWithdrawCall_Success() throws Exception {
+    public void testWithdrawCall_SuccessWithAmount300() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
         WithdrawCommand withdrawCommand = new WithdrawCommand(
@@ -36,7 +36,7 @@ public class WithdrawCommandUnitTest {
     }
 
     @Test
-    public void testWithdrawCall_Failed() throws Exception {
+    public void testWithdrawCall_FailedWithAmount600() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
         WithdrawCommand withdrawCommand = new WithdrawCommand(
@@ -56,7 +56,7 @@ public class WithdrawCommandUnitTest {
     }
 
     @Test
-    public void testWithdrawUndo() throws Exception {
+    public void testWithdrawUndo_WithAmount300() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
         WithdrawCommand withdrawCommand = new WithdrawCommand(

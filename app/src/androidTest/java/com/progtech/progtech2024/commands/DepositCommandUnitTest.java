@@ -22,7 +22,7 @@ public class DepositCommandUnitTest {
     }
 
     @Test
-    public void testDepositCall() throws Exception {
+    public void testDepositCall_WithAmount500() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
         DepositCommand depositCommand = new DepositCommand(
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
@@ -35,7 +35,7 @@ public class DepositCommandUnitTest {
     }
 
     @Test
-    public void testDepositUndo() throws Exception {
+    public void testDepositUndo_WithAmount500() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
         DepositCommand depositCommand = new DepositCommand(
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),

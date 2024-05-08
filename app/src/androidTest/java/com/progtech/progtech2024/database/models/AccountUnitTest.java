@@ -25,7 +25,7 @@ public class AccountUnitTest {
     }
 
     @Test
-    public void testModifyBalance() throws Exception {
+    public void testModifyBalance_To1000() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
         account.TestModifyBalance(InstrumentationRegistry.getInstrumentation().getTargetContext(), 1000);
         assertEquals(1000, account.balance);

@@ -24,7 +24,7 @@ public class AccountRepositoryUnitTest {
     }
 
     @Test
-    public void testRegister() throws Exception {
+    public void testRegister_GivesCorrectNewID() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccount(500, false);
 
         long newId = accountRepository.Register(account);
@@ -56,7 +56,7 @@ public class AccountRepositoryUnitTest {
     }
 
     @Test
-    public void testLogin_InvalidLogin() throws Exception {
+    public void testLogin_InvalidLogin() {
         String username = "wrong_username";
         String password = "wrong_password";
 
@@ -69,7 +69,7 @@ public class AccountRepositoryUnitTest {
     }
 
     @Test
-    public void testModifyBalance() throws Exception {
+    public void testModifyBalanceTo1000() throws Exception {
         int newBalance = 1000;
 
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
