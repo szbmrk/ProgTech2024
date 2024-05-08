@@ -45,7 +45,6 @@ public class WithdrawCommandUnitTest {
         );
         try {
             withdrawCommand.TestCall();
-
         }
         catch (Exception e) {
             assertEquals(true, e instanceof InsufficientFundsException);
