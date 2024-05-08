@@ -43,6 +43,7 @@ public class WithdrawCommandUnitTest {
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
                 600, account
         );
+
         try {
             withdrawCommand.TestCall();
         }
