@@ -56,7 +56,7 @@ public class AccountRepositoryUnitTest {
     }
 
     @Test
-    public void testLogin_InvalidLogin() {
+    public void testLogin_InvalidLogin_ThrowsInvalidUsernameOrPasswordException() {
         String username = "wrong_username";
         String password = "wrong_password";
 

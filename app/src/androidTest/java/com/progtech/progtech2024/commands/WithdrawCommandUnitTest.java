@@ -36,7 +36,7 @@ public class WithdrawCommandUnitTest {
     }
 
     @Test
-    public void testWithdrawCall_FailedWithAmount600() throws Exception {
+    public void testWithdrawCall_FailedWithAmount600_ThrowsInsufficientFundsException() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
         WithdrawCommand withdrawCommand = new WithdrawCommand(
