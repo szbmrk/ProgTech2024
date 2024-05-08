@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
+import com.progtech.progtech2024.exceptions.commands.InsufficientFundsException;
 import com.progtech.progtech2024.helper.DummyAccountCreator;
 import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 
@@ -47,7 +48,7 @@ public class WithdrawCommandUnitTest {
 
         }
         catch (Exception e) {
-            assertEquals("Insufficient funds!", e.getMessage());
+            assertEquals(true, e instanceof InsufficientFundsException);
         }
 
         assertEquals(500, account.balance);

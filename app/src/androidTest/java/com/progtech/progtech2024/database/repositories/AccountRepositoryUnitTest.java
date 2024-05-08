@@ -63,8 +63,8 @@ public class AccountRepositoryUnitTest {
         try {
             Account account = accountRepository.Login(username, password);
             assertNull(account);
-        } catch (InvalidUsernameOrPasswordException e) {
-            assertEquals("Invalid username or password!", e.getMessage());
+        } catch (Exception e) {
+            assertEquals(true, e instanceof InvalidUsernameOrPasswordException);
         }
     }
 
