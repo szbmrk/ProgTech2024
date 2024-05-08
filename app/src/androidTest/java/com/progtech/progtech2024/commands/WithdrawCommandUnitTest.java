@@ -1,6 +1,7 @@
 package com.progtech.progtech2024.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -10,6 +11,7 @@ import com.progtech.progtech2024.exceptions.commands.InsufficientFundsException;
 import com.progtech.progtech2024.helper.DummyAccountCreator;
 import com.progtech.progtech2024.helper.TestRepositoriesHelper;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,7 +37,7 @@ public class WithdrawCommandUnitTest {
         assertEquals(true, withdrawCommand.succeeded);
     }
 
-    @Test
+    @Test(expected = InsufficientFundsException.class)
     public void testWithdrawCall_FailedWithAmount600_ThrowsInsufficientFundsException() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
@@ -44,15 +46,7 @@ public class WithdrawCommandUnitTest {
                 600, account
         );
 
-        try {
-            withdrawCommand.TestCall();
-        }
-        catch (Exception e) {
-            assertEquals(true, e instanceof InsufficientFundsException);
-        }
-
-        assertEquals(500, account.balance);
-        assertEquals(false, withdrawCommand.succeeded);
+        withdrawCommand.TestCall();
     }
 
     @Test

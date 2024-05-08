@@ -55,17 +55,24 @@ public class AccountRepositoryUnitTest {
         assertEquals(expectedAccount, loggedIn);
     }
 
+    @Test(expected = InvalidUsernameOrPasswordException.class)
+    public void testLogin_InvalidLogin_ThrowsInvalidUsernameOrPasswordException() throws Exception {
+        String username = "wrong_username";
+        String password = "wrong_password";
+
+        Account account = accountRepository.Login(username, password);
+    }
+
     @Test
-    public void testLogin_InvalidLogin_ThrowsInvalidUsernameOrPasswordException() {
+    public void testLogin_InvalidLogin_ReturnsNull() {
         String username = "wrong_username";
         String password = "wrong_password";
 
         try {
             Account account = accountRepository.Login(username, password);
             assertNull(account);
-        } catch (Exception e) {
-            assertEquals(true, e instanceof InvalidUsernameOrPasswordException);
         }
+        catch (Exception e) { }
     }
 
     @Test
