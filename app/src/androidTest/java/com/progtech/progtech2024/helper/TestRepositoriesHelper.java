@@ -9,12 +9,10 @@ import com.progtech.progtech2024.manager.DatabaseManager;
 public class TestRepositoriesHelper {
     static DatabaseManager dbManager = DatabaseManager.getInstance(InstrumentationRegistry.getInstrumentation().getTargetContext());
     public static AccountRepository GetTestAccountRepository() throws Exception {
-        AccountRepository accountRepository = dbManager.GetTestAccountRepository();
-        return accountRepository;
+        return dbManager.GetTestAccountRepository();
     }
     public static TransactionRepository GetTestTransactionRepository() throws Exception {
-        TransactionRepository transactionRepository = dbManager.GetTestTransactionRepository();
-        return transactionRepository;
+        return dbManager.GetTestTransactionRepository();
     }
 
     public static void DeleteDataFromTestRepositories() throws Exception {

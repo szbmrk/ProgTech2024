@@ -1,6 +1,7 @@
 package com.progtech.progtech2024.commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -22,7 +23,7 @@ public class DepositCommandUnitTest {
     }
 
     @Test
-    public void testDepositCall_WithAmount500() throws Exception {
+    public void testDepositCall_WithAmount500Success() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
         DepositCommand depositCommand = new DepositCommand(
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
@@ -31,11 +32,11 @@ public class DepositCommandUnitTest {
         depositCommand.TestCall();
 
         assertEquals(1000, account.balance);
-        assertEquals(true, depositCommand.succeeded);
+        assertTrue(depositCommand.succeeded);
     }
 
     @Test
-    public void testDepositUndo_WithAmount500() throws Exception {
+    public void testDepositUndo_WithAmount500Success() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
         DepositCommand depositCommand = new DepositCommand(
                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
@@ -44,7 +45,7 @@ public class DepositCommandUnitTest {
         depositCommand.TestCall();
         depositCommand.TestUndo();
 
-        assertEquals(true, depositCommand.succeeded);
+        assertTrue(depositCommand.succeeded);
         assertEquals(500, account.balance);
     }
 }

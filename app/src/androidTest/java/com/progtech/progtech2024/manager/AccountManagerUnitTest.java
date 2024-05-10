@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class AccountManagerUnitTest {
     @Test
-    public void testGetLoggedInAccount() {
+    public void testSetAndGetLoggedInAccount() {
         Account account = new Account(1, "12345", "user1", "pass1", 500, false);
         AccountManager.getInstance().setLoggedInAccount(account);
         assertEquals(account, AccountManager.getInstance().getLoggedInAccount());

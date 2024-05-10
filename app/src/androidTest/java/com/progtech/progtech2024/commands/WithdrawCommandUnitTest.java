@@ -50,7 +50,7 @@ public class WithdrawCommandUnitTest {
     }
 
     @Test
-    public void testWithdrawUndo_WithAmount300() throws Exception {
+    public void testWithdrawUndo_WithAmount300Success() throws Exception {
         Account account = DummyAccountCreator.CreateDummyAccountAndPostItToDB(500, false);
 
         WithdrawCommand withdrawCommand = new WithdrawCommand(

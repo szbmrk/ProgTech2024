@@ -1,6 +1,9 @@
 package com.progtech.progtech2024.database.models;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -35,7 +38,7 @@ public class AccountUnitTest {
         Account account1 = new Account(1, "12345", "user1", "pass1", 500, false);
         Account account2 = new Account(1, "12345", "user1", "pass1", 500, false);
 
-        assertEquals(true, account1.equals(account2));
+        assertEquals(account1, account2);
     }
 
     @Test
@@ -43,6 +46,6 @@ public class AccountUnitTest {
         Account account1 = new Account(1, "12345", "user1", "pass1", 500, false);
         Account account2 = new Account(2, "12345", "user2", "pass2", 500, false);
 
-        assertEquals(false, account1.equals(account2));
+        assertNotEquals(account1, account2);
     }
 }
