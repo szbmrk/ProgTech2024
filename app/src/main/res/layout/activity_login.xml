@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.auth.RegisterActivity">
-
+    tools:context=".activity.auth.LoginActivity">
     <TextView
         android:id="@+id/bankNameText"
         android:layout_width="254dp"
@@ -27,7 +26,7 @@
         android:id="@+id/passwordField"
         android:layout_width="210dp"
         android:layout_height="44dp"
-        android:layout_marginBottom="284dp"
+        android:layout_marginBottom="240dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/registerBtn"
@@ -54,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:text=" To Login"
+        android:text=" To Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/registerBtn"
         app:layout_constraintHorizontal_bias="0.659"
@@ -66,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="44dp"
-        android:text="Register"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -95,42 +94,6 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/passwordField"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Switch
-        android:id="@+id/isJunior"
-        android:layout_width="197dp"
-        android:layout_height="43dp"
-        android:text="Junior account"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/generateAccountNumberBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordField"
-        app:layout_constraintVertical_bias="0.158" />
-
-    <Button
-        android:id="@+id/generateAccountNumberBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Generate account number"
-        app:layout_constraintBottom_toTopOf="@+id/accountNumText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/accountNumText"
-        android:layout_width="245dp"
-        android:layout_height="31dp"
-        android:layout_marginBottom="184dp"
-        android:text="Example Account Number"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
