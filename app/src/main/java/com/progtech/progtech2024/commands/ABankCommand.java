@@ -28,11 +28,11 @@ public abstract class ABankCommand {
         this(context, amount, fromAccount, fromAccount);
     }
 
-    protected abstract void Call() throws ExecutionException, InterruptedException, InsufficientFundsException;
-    protected abstract void Undo() throws ExecutionException, InterruptedException, InsufficientFundsException;
+    protected abstract void Call() throws Exception;
+    protected abstract void Undo() throws Exception;
 
-    protected abstract void TestCall() throws ExecutionException, InterruptedException, InsufficientFundsException;
-    protected abstract void TestUndo() throws ExecutionException, InterruptedException, InsufficientFundsException;
+    protected abstract void TestCall() throws Exception;
+    protected abstract void TestUndo() throws Exception;
 
     protected abstract Transaction BuildTransaction();
     protected boolean PostTransaction() throws ExecutionException, InterruptedException {

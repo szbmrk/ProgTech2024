@@ -24,4 +24,7 @@ public interface AccountDao {
 
     @Query("DELETE FROM accounts")
     int deleteAll();
+
+    @Query("SELECT * FROM accounts where accountNumber = :accountNumber")
+    Account getAccountByAccountNum(String accountNumber);
 }

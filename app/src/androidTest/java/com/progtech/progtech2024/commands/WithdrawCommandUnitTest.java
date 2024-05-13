@@ -21,6 +21,7 @@ public class WithdrawCommandUnitTest {
     @Before
     public void SetUp() throws Exception {
         accountRepository = TestRepositoriesHelper.GetTestAccountRepository();
+        TestRepositoriesHelper.DeleteDataFromTestRepositories();
     }
 
     @Test

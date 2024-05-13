@@ -7,6 +7,7 @@ import androidx.room.Room;
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.daos.AccountDao;
+import com.progtech.progtech2024.exceptions.database.AccountNumDoesntExistException;
 import com.progtech.progtech2024.exceptions.database.FailedQueryException;
 import com.progtech.progtech2024.exceptions.database.InvalidUsernameOrPasswordException;
 import com.progtech.progtech2024.exceptions.database.UserAlreadyTakenException;
@@ -51,6 +52,15 @@ public class AccountRepository {
 
         if (account.get() == null) {
             throw new InvalidUsernameOrPasswordException();
+        }
+
+        return account.get();
+    }
+    public Account GetAccountByAccountNum(String accountNum) throws ExecutionException, InterruptedException, AccountNumDoesntExistException {
+        Future<Account> account = executorService.submit(() -> accountDao.getAccountByAccountNum(accountNum));
+
+        if (account.get() == null) {
+            throw new AccountNumDoesntExistException();
         }
 
         return account.get();
