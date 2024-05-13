@@ -11,6 +11,7 @@ import androidx.room.PrimaryKey;
 
 import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.repositories.AccountRepository;
+import com.progtech.progtech2024.helper.BankActionLogger;
 import com.progtech.progtech2024.helper.DateFormatter;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
@@ -60,6 +61,7 @@ public class Account {
         AccountRepository accountRepository = DatabaseManager.getInstance(context).GetAccountRepository();
         if (accountRepository.ModifyBalance(id, newBalance)) {
             balance = newBalance;
+            BankActionLogger.WriteInLogFile(context, "The balance of the " + accountNumber +"number account was modified, the current balance is: " + newBalance);
             return true;
         }
 

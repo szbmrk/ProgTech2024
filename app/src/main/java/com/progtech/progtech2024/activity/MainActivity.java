@@ -16,6 +16,7 @@ import com.progtech.progtech2024.exceptions.commands.InsufficientFundsException;
 import com.progtech.progtech2024.exceptions.database.FailedQueryException;
 import com.progtech.progtech2024.exceptions.database.InvalidUsernameOrPasswordException;
 import com.progtech.progtech2024.exceptions.database.UserAlreadyTakenException;
+import com.progtech.progtech2024.helper.BankActionLogger;
 import com.progtech.progtech2024.manager.AccountManager;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BankActionLogger.WriteInLogFile(this,"TESTLOG22");
 
         DatabaseManager db = DatabaseManager.getInstance(this);
 

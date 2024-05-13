@@ -6,6 +6,7 @@ import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.models.Transaction;
 import com.progtech.progtech2024.database.repositories.TransactionRepository;
 import com.progtech.progtech2024.exceptions.commands.InsufficientFundsException;
+import com.progtech.progtech2024.helper.BankActionLogger;
 import com.progtech.progtech2024.manager.DatabaseManager;
 
 import java.util.concurrent.ExecutionException;
@@ -38,6 +39,7 @@ public abstract class ABankCommand {
     protected boolean PostTransaction() throws ExecutionException, InterruptedException {
         TransactionRepository transactionRepository = DatabaseManager.getInstance(context).GetTransactionRepository();
         succeeded = transactionRepository.PostTransaction(BuildTransaction());
+        BankActionLogger.WriteInLogFile(context, this.BuildTransaction().toString());
         return succeeded;
     }
 

@@ -59,10 +59,18 @@ public class Transaction {
         this.amount = amount;
         this.createdAt = DateFormatter.DateToString(new Date());
     }
+    @Ignore @Override
+    public String toString() {
+        return "Transaction:" + transactionType +
+                "\nDate of transaction: " + createdAt +
+                "\nUsed account number: " + fromAccountId +
+                "\nTransaction amount: " + amount +
+                "\nAccount where the amount was sent: " + toAccountId +
+                "-------------------------------------";
 
-    @Ignore
 
-    @Override
+    }
+    @Ignore @Override
     public boolean equals(@Nullable Object obj) {
         if (obj == null) return false;
         if (!(obj instanceof Transaction)) return false;
