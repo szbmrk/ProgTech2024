@@ -8,6 +8,7 @@ import com.progtech.progtech2024.database.BankDatabase;
 import com.progtech.progtech2024.database.models.Account;
 import com.progtech.progtech2024.database.daos.AccountDao;
 import com.progtech.progtech2024.exceptions.database.AccountNumDoesntExistException;
+import com.progtech.progtech2024.exceptions.database.AccountWithIdDoesntExistException;
 import com.progtech.progtech2024.exceptions.database.FailedQueryException;
 import com.progtech.progtech2024.exceptions.database.InvalidUsernameOrPasswordException;
 import com.progtech.progtech2024.exceptions.database.UserAlreadyTakenException;
@@ -52,6 +53,15 @@ public class AccountRepository {
 
         if (account.get() == null) {
             throw new InvalidUsernameOrPasswordException();
+        }
+
+        return account.get();
+    }
+    public Account GetAccountById(int id) throws ExecutionException, InterruptedException, AccountWithIdDoesntExistException {
+        Future<Account> account = executorService.submit(() -> accountDao.getAccountById(id));
+
+        if (account.get() == null) {
+            throw new AccountWithIdDoesntExistException();
         }
 
         return account.get();

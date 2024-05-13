@@ -19,6 +19,9 @@ public interface AccountDao {
     @Query("SELECT * FROM accounts WHERE username = :username AND password = :password")
     Account login(String username, String password);
 
+    @Query("SELECT * FROM accounts WHERE id = :id")
+    Account getAccountById(int id);
+
     @Query("UPDATE accounts SET balance = :newBalance WHERE id = :userId")
     int modifyBalance(long userId, int newBalance);
 

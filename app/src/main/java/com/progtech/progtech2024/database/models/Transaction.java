@@ -59,6 +59,7 @@ public class Transaction {
         this.amount = amount;
         this.createdAt = DateFormatter.DateToString(new Date());
     }
+
     @Ignore @Override
     public String toString() {
         return "Transaction:" + transactionType +
@@ -67,8 +68,6 @@ public class Transaction {
                 "\nTransaction amount: " + amount +
                 "\nAccount where the amount was sent: " + toAccountId +
                 "-------------------------------------";
-
-
     }
     @Ignore @Override
     public boolean equals(@Nullable Object obj) {

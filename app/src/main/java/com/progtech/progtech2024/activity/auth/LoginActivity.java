@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void AssignButtons()
     {
-        btnToRegister = findViewById(R.id.goToLogin);
+        btnToRegister = findViewById(R.id.goToRegister);
         btnToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnLogin = findViewById(R.id.registerBtn);
+        btnLogin = findViewById(R.id.loginBtn);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 catch (Exception e) {
-                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG);
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });

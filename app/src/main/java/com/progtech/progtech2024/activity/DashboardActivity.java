@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.progtech.progtech2024.R;
+import com.progtech.progtech2024.activity.account_history.AccountHistoryActivity;
 import com.progtech.progtech2024.activity.commands.DepositActivity;
 import com.progtech.progtech2024.activity.commands.TransferActivity;
 import com.progtech.progtech2024.activity.commands.WithdrawActivity;
@@ -52,11 +53,11 @@ public class DashboardActivity extends AppCompatActivity {
     public void AsssignTexts() {
         usernameText = findViewById(R.id.currentUsernameTxt);
         accountNumberText = findViewById(R.id.currentAccountNumberTxt);
-        balanceText = findViewById(R.id.currentBalance);
+        balanceText = findViewById(R.id.currentBalanceTxt);
         Account loggedIn = AccountManager.getInstance().getLoggedInAccount();
         usernameText.setText(loggedIn.username);
         accountNumberText.setText(loggedIn.accountNumber);
-        balanceText.setText(loggedIn.balance);
+        balanceText.setText(String.valueOf(loggedIn.balance));
     }
     public void AsssignButtons() {
         depositBtn = findViewById(R.id.depositBtn);

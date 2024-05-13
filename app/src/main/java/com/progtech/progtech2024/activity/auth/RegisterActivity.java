@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -105,11 +105,15 @@ public class RegisterActivity extends AppCompatActivity {
         return sb.toString();
     }
     public void MakeAccountWithGivenParameters() throws Exception {
+
         usernameText = findViewById(R.id.usernameField);
         passwordText = findViewById(R.id.passwordField);
         isJuniorSwitch = findViewById(R.id.isJunior);
 
-        if(accountNumberToShow.getText() == "")
+        if(usernameText.getText().toString().isEmpty() || passwordText.getText().toString().isEmpty()){
+            throw new Exception("You must fill all the fields!");
+        }
+        if(accountNumberToShow.getText().toString().isEmpty() || accountNumberToShow.getText().toString().equals("Example Account Number"))
         {
             throw new Exception("generate account number first!");
         }
