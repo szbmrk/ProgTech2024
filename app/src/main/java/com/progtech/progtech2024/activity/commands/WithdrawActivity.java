@@ -40,7 +40,7 @@ public class WithdrawActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText amountText = findViewById(R.id.withdrawAmountTxt);
                 if (amountText.getText().toString().isEmpty()){
-                    Toast.makeText(WithdrawActivity.this, "Deposit amount shouldn't be empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WithdrawActivity.this, "Withdraw amount shouldn't be empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Account loggedIn = AccountManager.getInstance().getLoggedInAccount();

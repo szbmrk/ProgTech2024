@@ -42,7 +42,7 @@ public class TransferActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText amountText = findViewById(R.id.transferAmountTxt);
                 if (amountText.getText().toString().isEmpty()){
-                    Toast.makeText(TransferActivity.this, "Deposit amount shouldn't be empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TransferActivity.this, "Transfer amount shouldn't be empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Account loggedIn = AccountManager.getInstance().getLoggedInAccount();
